@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reysi | Relapse</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050505;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header h1 {
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #b67cff;
+    }
+
+    section {
+      padding: 100px 8%;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.8)),
+        url("heroo.jpg") center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: clamp(70px, 12vw, 150px);
+      line-height: 0.9;
+      font-family: Georgia, serif;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      max-width: 650px;
+      margin: 0 auto 35px auto;
+      color: #e0e0e0;
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      margin: 10px;
+      background: #8f5cff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #7440f5;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #fff;
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* MARQUEE */
+
+    .marquee {
+      background: #0c0c0c;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 20s linear infinite;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* TITLES */
+
+    .section-title {
+      font-size: clamp(42px, 7vw, 90px);
+      font-family: Georgia, serif;
+      margin-bottom: 35px;
+      text-transform: uppercase;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: linear-gradient(135deg, #070707, #161027, #32070b);
+    }
+
+    .about p {
+      max-width: 850px;
+      font-size: 19px;
+      margin: 0 auto 22px auto;
+      color: #e7e7e7;
+    }
+
+    /* MUSIC */
+
+    .music {
+      background: #080808;
+    }
+
+    .music-box {
+      background: linear-gradient(135deg, #0d0d0d, #2b164f);
+      padding: 45px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .music-box h3 {
+      font-size: 48px;
+      font-family: Georgia, serif;
+      margin-bottom: 20px;
+    }
+
+    /* VIDEO */
+
+    .video {
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+        url("watch.jpg") center/cover no-repeat;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-box {
+      background: rgba(0,0,0,0.65);
+      padding: 45px;
+      max-width: 650px;
+      border-radius: 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* PHOTOS */
+
+    .photos {
+      background: #060606;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 14px;
+      transition: 0.3s;
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    /* TOUR */
+
+    .tour {
+      background: #0a0612;
+    }
+
+    /* SHOP */
+
+    .shop {
+      background: #070707;
+    }
+
+    /* CARD */
+
+    .card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 35px;
+      border-radius: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 30px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #050505;
+    }
+
+    .contact p {
+      margin-bottom: 12px;
+    }
+
+    form {
+      max-width: 600px;
+      display: grid;
+      gap: 15px;
+      margin: 30px auto 0 auto;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 8px;
+    }
+
+    textarea {
+      min-height: 140px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 50px 8%;
+      background: #000;
+      text-align: center;
+      color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #b67cff;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        text-align: center;
+      }
+
+      nav a {
+        margin: 0 8px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 160px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <h1>Reysi</h1>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="#video">Video</a>
+      <a href="#photos">Photos</a>
+      <a href="#tour">Tour</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h2>Relapse</h2>
+
+      <p>
+        Dark beachy Miami pop/R&B for late nights, blurred memories,
+        and emotions you can still move to.
+      </p>
+
+      <a href="#music" class="btn">Listen Soon</a>
+
+      <a href="#contact" class="btn secondary">
+        Join Email List
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- MARQUEE -->
+
+  <div class="marquee">
+
+    <span>
+      New Single: Relapse • New Single: Relapse • New Single: Relapse •
+    </span>
+
+  </div>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+
+    <h2 class="section-title">About Reysi</h2>
+
+    <p>
+      Reysi is a Miami-based singer, songwriter, and producer creating
+      cinematic alternative pop and R&B inspired by nightlife, nostalgia,
+      emotional tension, and beach city culture.
+    </p>
+
+    <p>
+      Blending alternative pop, indie influences, and Latin rhythm,
+      Reysi’s music is designed to feel immersive, moody, rhythmic,
+      and emotionally honest.
+    </p>
+
+    <p>
+      Inspired by artists such as Frank Ocean, Dominic Fike, Finneas,
+      The Weeknd, and Bad Bunny, the project focuses on creating songs
+      that feel like late-night memories people can live inside of.
+    </p>
+
+  </section>
+
+  <!-- MUSIC -->
+
+  <section class="music" id="music">
+
+    <h2 class="section-title">Music</h2>
+
+    <div class="music-box">
+
+      <h3>Relapse</h3>
+
+      <p>
+        “Relapse” is Reysi’s upcoming single combining moody pop/R&B,
+        Miami-inspired rhythm, and cinematic atmosphere.
+      </p>
+
+      <br>
+
+      <p><strong>Coming Soon</strong></p>
+
+      <br>
+
+      <a href="#" class="btn">Spotify</a>
+      <a href="#" class="btn">Apple Music</a>
+      <a href="#" class="btn">YouTube</a>
+
+    </div>
+
+  </section>
+
+  <!-- VIDEO -->
+
+  <section class="video" id="video">
+
+    <div class="video-box">
+
+      <h2 class="section-title">Watch</h2>
+
+      <p><strong>Official Visual Coming Soon</strong></p>
+
+      <p>
+        The visual direction for “Relapse” focuses on cinematic Miami
+        nightlife, emotional tension, dark beach-inspired imagery,
+        and late-night memories.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- PHOTOS -->
+
+  <section class="photos" id="photos">
+
+    <h2 class="section-title">Photos</h2>
+
+    <div class="photo-grid">
+
+      <img src="Dom.jpg"
+      alt="Cinematic nightlife visual for Reysi website">
+
+      <img src="Reysi1.jpg"
+      alt="Blurry emotional nightlife photography">
+
+      <img src="reysisun.jpg"
+      alt="Miami sunset aesthetic image">
+
+      <img src="reysipool.jpg"
+      alt="Nighttime motel pool cinematic visual">
+
+    </div>
+
+  </section>
+
+  <!-- TOUR -->
+
+  <section class="tour" id="tour">
+
+    <h2 class="section-title">Tour</h2>
+
+    <div class="card">
+
+      <h3>No upcoming dates currently.</h3>
+
+      <p>
+        Future live shows and events will be announced here.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SHOP -->
+
+  <section class="shop" id="shop">
+
+    <h2 class="section-title">Shop</h2>
+
+    <div class="card">
+
+      <h3>No items currently for sale.</h3>
+
+      <p>
+        Merchandise and exclusive products connected to future releases
+        and visuals will be available soon.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <h2 class="section-title">Contact</h2>
+
+    <p>
+      For business inquiries, collaborations, press, or booking:
+    </p>
+
+    <p><strong>Email:</strong> contact@reysi.com</p>
+
+    <p><strong>Instagram:</strong> @itsreysii</p>
+
+    <br>
+
+    <a href="#" class="btn">Instagram</a>
+    <a href="#" class="btn">TikTok</a>
+    <a href="#" class="btn">Spotify</a>
+    <a href="#" class="btn">Apple Music</a>
+    <a href="#" class="btn">YouTube</a>
+
+    <form>
+
+      <input
+      type="text"
+      placeholder="Name"
+      aria-label="Name">
+
+      <input
+      type="email"
+      placeholder="Email"
+      aria-label="Email">
+
+      <textarea
+      placeholder="Message"
+      aria-label="Message"></textarea>
+
+      <button class="btn" type="submit">
+        Send Message
+      </button>
+
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>Follow Reysi</p>
+
+    <br>
+
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Spotify</a>
+    <a href="#">Apple Music</a>
+    <a href="#">YouTube</a>
+
+    <br><br>
+
+    <p>© 2026 Reysi. All rights reserved.</p>
+
+  </footer>
+
+</body>
+</html>
